@@ -39,7 +39,7 @@ public class Solution {
         }
         for (int i = min; i > 1; i--) {
             if (min % i == 0 && max % i == 0) {
-                result = (number2*number1)/i;
+                result = (number1*number2)/i;
                 return result;
             }
         }
