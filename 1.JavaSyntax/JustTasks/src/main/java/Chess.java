@@ -6,23 +6,34 @@ public class Chess {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String chess = reader.readLine();
-        System.out.println(checkChess(chess));
+        String turn = chess.toUpperCase();
+        System.out.println(checkChess(turn));
     }
 
     public static String checkChess(String chess) {
         String[] array = chess.split("-");
-        char[] arrayOfChars = array[0].toCharArray();
-        char[] arrayOfChars2 = array[1].toCharArray();
-        String yes = "yes";
-        if (arrayOfChars[0] < arrayOfChars2[0]+1 || arrayOfChars[0] > arrayOfChars2[0]-1) {
-            if (arrayOfChars[1] < arrayOfChars2[1]+2 || arrayOfChars[1] > arrayOfChars2[1]-2) {
-                return yes;
-            } else if (arrayOfChars[0] < arrayOfChars2[0]+2 || arrayOfChars[0] > arrayOfChars2[0]-2) {
-                if (arrayOfChars[1] < arrayOfChars2[1]+1 || arrayOfChars[1] > arrayOfChars2[1]+1) {
-                    return yes;
-                }
+        char[] startOfTurn = array[0].toCharArray();
+        char[] endOfTurn = array[1].toCharArray();
+        if (endOfTurn[0] == startOfTurn[0] + 1 || endOfTurn[0] == startOfTurn[0] - 1) {
+            if (endOfTurn[1] == startOfTurn[1] + 2 || endOfTurn[1] == startOfTurn[1] + 2) {
+                return "YES";
             }
         }
-        return "Error";
+        if (endOfTurn[0] == startOfTurn[0] + 2 || endOfTurn[0] == startOfTurn[0] - 2) {
+            if (endOfTurn[1] == startOfTurn[1] + 1 || endOfTurn[1] == startOfTurn[1] + 1) {
+                return "YES";
+            }
+        }
+        if (endOfTurn[0] != startOfTurn[0] + 2 || endOfTurn[0] != startOfTurn[0] - 2) {
+            if (endOfTurn[1] != startOfTurn[1] + 1 || endOfTurn[1] != startOfTurn[1] + 1) {
+                return "NO";
+            }
+        }
+        if (endOfTurn[0] != startOfTurn[0] + 1 || endOfTurn[0] != startOfTurn[0] - 1) {
+            if (endOfTurn[1] != startOfTurn[1] + 2 || endOfTurn[1] != startOfTurn[1] + 2) {
+                return "NO";
+            }
+        }
+        return "ERROR";
     }
 }
