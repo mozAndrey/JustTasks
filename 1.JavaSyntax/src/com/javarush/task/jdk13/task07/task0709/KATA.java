@@ -2,15 +2,14 @@ package com.javarush.task.jdk13.task07.task0709;
 
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class KATA {
     public static void main(String[] args) throws IOException {
         int result = 0;
-        int firstNumRom = 0;
-        int secondNumRom = 0;
-        int firstNum = 0;
-        int secondNum = 0;
+        int firstNumRom;
+        int secondNumRom;
+        int firstNum;
+        int secondNum;
         Scanner inputString = new Scanner(System.in);
         String string = inputString.nextLine().toUpperCase();
         String[] arrayOfStrings = string.split(" ");
@@ -84,8 +83,8 @@ public class KATA {
                         "\n Правильный формат ввода: число (один оператор (+, -, /, *)) число");
 
             }
-            if (ifRomanian(arrayOfStrings[0]) == true && ifRomanian(arrayOfStrings[2]) == false ||
-                    ifRomanian(arrayOfStrings[2]) == true && ifRomanian(arrayOfStrings[0]) == false) {
+            if (ifRomanian(arrayOfStrings[0]) && !ifRomanian(arrayOfStrings[2]) ||
+                    ifRomanian(arrayOfStrings[2]) && !ifRomanian(arrayOfStrings[0])) {
                 throw new Exception("используются одновременно разные системы счисления");
             }
         } catch (Exception e) {
@@ -134,9 +133,7 @@ public class KATA {
     }
 
     public static boolean ifRomanian(String firstNumber) {
-        if (firstNumber.indexOf('I') != -1 || firstNumber.indexOf('X') != -1 || firstNumber.indexOf('V') != -1) {
-            return true;
-        } else return false;
+        return firstNumber.indexOf('I') != -1 || firstNumber.indexOf('X') != -1 || firstNumber.indexOf('V') != -1;
     }
 
     public static String convertToRom(int arabic) {
