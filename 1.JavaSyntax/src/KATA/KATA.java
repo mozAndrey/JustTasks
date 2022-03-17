@@ -26,7 +26,9 @@ public class KATA {
             } else if (firstNumRom > 10 ||
                     arrayOfStrings[0].indexOf('X')!=-1 & arrayOfStrings[0].indexOf('V')!=-1 ||
                     arrayOfStrings[0].indexOf('X')!=-1 & arrayOfStrings[0].indexOf('L')!=-1 ||
-                    arrayOfStrings[0].indexOf('X')!=-1 & arrayOfStrings[0].indexOf('C')!=-1) {
+                    arrayOfStrings[0].indexOf('X')!=-1 & arrayOfStrings[0].indexOf('C')!=-1 ||
+                    arrayOfStrings[0].indexOf('L')!=-1 ||
+                    arrayOfStrings[0].indexOf('C')!=-1) {
                 try {
                     throw new Exception(" калькулятор принимает на ввод числа от 1 до 10");
                 } catch (Exception e) {
@@ -36,7 +38,9 @@ public class KATA {
             } else if (secondNumRom > 10 ||
                     arrayOfStrings[2].indexOf('X')!=-1 & arrayOfStrings[2].indexOf('V')!=-1 ||
                     arrayOfStrings[2].indexOf('X')!=-1 & arrayOfStrings[2].indexOf('L')!=-1 ||
-                    arrayOfStrings[2].indexOf('X')!=-1 & arrayOfStrings[2].indexOf('C')!=-1) {
+                    arrayOfStrings[2].indexOf('X')!=-1 & arrayOfStrings[2].indexOf('C')!=-1 ||
+                    arrayOfStrings[2].indexOf('C')!=-1 ||
+                    arrayOfStrings[2].indexOf('L')!=-1) {
                 try {
                     throw new Exception(" калькулятор принимает на ввод числа от 1 до 10");
                 } catch (Exception e) {
@@ -180,7 +184,7 @@ public class KATA {
     }
 
     public static boolean ifRomanian(String firstNumber) {
-        return firstNumber.indexOf('I') != -1 || firstNumber.indexOf('X') != -1 || firstNumber.indexOf('V') != -1;
+        return firstNumber.indexOf('I') != -1 || firstNumber.indexOf('X') != -1 || firstNumber.indexOf('V') != -1 || firstNumber.indexOf('C') != -1 || firstNumber.indexOf('L') != -1;
     }
 
     public static String convertToRom(int arabic) {
