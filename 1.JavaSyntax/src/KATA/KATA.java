@@ -90,7 +90,7 @@ public class KATA {
             secondNum = Integer.parseInt(arrayOfStrings[2]);
             if (firstNum <= 0 || secondNum <= 0 || firstNum > 10 || secondNum > 10) {
                 try {
-                    throw new Exception(" калькулятор принимат числа от 1 до 10 включительно");
+                    throw new Exception(" калькулятор принимает числа от 1 до 10 включительно");
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.exit(0);
