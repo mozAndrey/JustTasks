@@ -1,15 +1,13 @@
 package KATA;
 
 import java.io.IOException;
+import java.lang.reflect.Executable;
 import java.util.Scanner;
 
 public class KATA {
     public static void main(String[] args) throws IOException {
         int result = 0;
-        int firstNumRom;
-        int secondNumRom;
-        int firstNum;
-        int secondNum;
+        int firstNumRom, secondNumRom, firstNum, secondNum;
         Scanner inputString = new Scanner(System.in);
         String string = inputString.nextLine().toUpperCase();
         String[] arrayOfStrings = string.split(" ");
@@ -18,6 +16,34 @@ public class KATA {
         if (ifRomanian(arrayOfStrings[0]) && ifRomanian(arrayOfStrings[2])) {
             firstNumRom = convertNumToArab(arrayOfStrings[0]);
             secondNumRom = convertNumToArab(arrayOfStrings[2]);
+            if (arrayOfStrings[0].indexOf('-')!=-1 || arrayOfStrings[2].indexOf('-')!=-1) {
+                try {
+                    throw new Exception(" калькулятор не принимает на ввод отрицательные числа");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.exit(0);
+                }
+            } else if (firstNumRom > 10 ||
+                    arrayOfStrings[0].indexOf('X')!=-1 & arrayOfStrings[0].indexOf('V')!=-1 ||
+                    arrayOfStrings[0].indexOf('X')!=-1 & arrayOfStrings[0].indexOf('L')!=-1 ||
+                    arrayOfStrings[0].indexOf('X')!=-1 & arrayOfStrings[0].indexOf('C')!=-1) {
+                try {
+                    throw new Exception(" калькулятор принимает на ввод числа от 1 до 10");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.exit(0);
+                }
+            } else if (secondNumRom > 10 ||
+                    arrayOfStrings[2].indexOf('X')!=-1 & arrayOfStrings[2].indexOf('V')!=-1 ||
+                    arrayOfStrings[2].indexOf('X')!=-1 & arrayOfStrings[2].indexOf('L')!=-1 ||
+                    arrayOfStrings[2].indexOf('X')!=-1 & arrayOfStrings[2].indexOf('C')!=-1) {
+                try {
+                    throw new Exception(" калькулятор принимает на ввод числа от 1 до 10");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.exit(0);
+                }
+            }
             switch (sign[0]) {
                 case ('-'):
                     result = firstNumRom - secondNumRom;
@@ -40,12 +66,14 @@ public class KATA {
                             "\n Правильный формат ввода: число (один оператор (+, -, /, *)) число");
                 } catch (Exception e) {
                     e.printStackTrace();
+                    System.exit(0);
                 }
             } else if (result < 1) {
                 try {
-                    throw new Exception(" в римской системе нет отрицательных чисел и нуля");
+                    throw new Exception(" в римской системе счисления нет отрицательных чисел и нуля");
                 } catch (Exception e) {
                     e.printStackTrace();
+                    System.exit(0);
                 }
             }
             if (result < 10) {
@@ -56,6 +84,14 @@ public class KATA {
         } else {
             firstNum = Integer.parseInt(arrayOfStrings[0]);
             secondNum = Integer.parseInt(arrayOfStrings[2]);
+            if (firstNum <= 0 || secondNum <= 0 || firstNum > 10 || secondNum > 10) {
+                try {
+                    throw new Exception(" калькулятор принимат числа от 1 до 10 включительно");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.exit(0);
+                }
+            }
             switch (sign[0]) {
                 case ('-'):
                     result = firstNum - secondNum;
@@ -90,6 +126,7 @@ public class KATA {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(0);
         }
 
     }
@@ -126,6 +163,15 @@ public class KATA {
                 break;
             case "X":
                 result1 = 10;
+                break;
+            case "XI":
+                result1 = 11;
+                break;
+            case "XII":
+                result1 = 12;
+                break;
+            case "XIII":
+                result1 = 13;
                 break;
             default:
                 break;
